@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { defaultThemeName, ThemeName } from "src/config/themes";
 import { Locale, locales } from "src/config/locales";
 import { getBrowserLocale } from "src/utils/locales";
+import AsyncStorage from "@react-native-community/async-storage";
 
 const LOCAL_STORAGE_KEY = "settings";
 
@@ -39,8 +40,8 @@ export class SettingsContextProvider extends React.PureComponent<
     super(props);
     this.state = {
       ...getInitialValues(),
-      ...this.getSettingsFromLocalStorage(),
     };
+    void this.updateSettingsWithPersistedValue();
   }
 
   public render(): React.ReactNode {
@@ -66,18 +67,23 @@ export class SettingsContextProvider extends React.PureComponent<
         ...state,
         ...settings,
       };
-      window.localStorage.setItem(
-        LOCAL_STORAGE_KEY,
-        JSON.stringify(newSettings)
-      );
+      void AsyncStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newSettings));
       return newSettings;
     });
   };
 
-  private getSettingsFromLocalStorage = (): Partial<
-    SettingsContextProviderState
+  private updateSettingsWithPersistedValue = async (): Promise<void> => {
+    const json = await this.getSettingsFromLocalStorage();
+    this.setState((state) => ({
+      ...state,
+      ...json,
+    }));
+  };
+
+  private getSettingsFromLocalStorage = async (): Promise<
+    Partial<SettingsContextProviderState>
   > => {
-    const json = window.localStorage.getItem(LOCAL_STORAGE_KEY);
+    const json = await AsyncStorage.getItem(LOCAL_STORAGE_KEY);
 
     if (!json) {
       return {};
