@@ -15,5 +15,5 @@ msgstr ""
 
 #: src/components/AppLayout/AppLayout.tsx:
 #: src/pages/HomePage/HomePage.tsx:
-msgid "Open up App.tsx to start working on your app!"
+msgid "Открой App.tsx и начни разрабатывать!"
 msgstr ""
