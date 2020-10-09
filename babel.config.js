@@ -8,6 +8,7 @@ module.exports = function (api) {
         {
           alias: {
             src: "./src",
+            __utils__: "./__utils__",
           },
         },
       ],

@@ -41,6 +41,7 @@ export class SettingsContextProvider extends React.PureComponent<
     this.state = {
       ...getInitialValues(),
     };
+
     void this.updateSettingsWithPersistedValue();
   }
 
