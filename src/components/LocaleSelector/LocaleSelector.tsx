@@ -14,9 +14,9 @@ const LocalSelector: React.FC<LocalSelectorProps> = (
   };
 
   return (
-    <select onChange={handleLocaleChange}>
+    <select onChange={handleLocaleChange} value={locale}>
       {locales.map((l) => (
-        <option selected={locale === l.key} value={l.key} key={l.key}>
+        <option value={l.key} key={l.key}>
           {l.localName} ({l.internationalName})
         </option>
       ))}
