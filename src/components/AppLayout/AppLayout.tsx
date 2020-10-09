@@ -8,6 +8,8 @@ import {
   SettingsContextProvider,
   useSettings,
 } from "src/contexts/SettingsContext";
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
 import LocalSelector from "src/components/LocaleSelector";
 
 const AppLayoutInternal: React.FC<AppLayoutInternalProps> = ({
@@ -16,16 +18,18 @@ const AppLayoutInternal: React.FC<AppLayoutInternalProps> = ({
   const { locale } = useSettings();
 
   return (
-    <TargemProvider locale={locale} translations={translations}>
-      <View style={styles.container}>
-        <LocalSelector />
-        <Text>
-          <T message="Open up App.tsx to start working on your app!" />
-        </Text>
-        {children}
-        <StatusBar style="auto" />
-      </View>
-    </TargemProvider>
+    <NavigationContainer>
+      <TargemProvider locale={locale} translations={translations}>
+        <View style={styles.container}>
+          <LocalSelector />
+          <Text>
+            <T message="Open up App.tsx to start working on your app!" />
+          </Text>
+          {children}
+          <StatusBar style="auto" />
+        </View>
+      </TargemProvider>
+    </NavigationContainer>
   );
 };
 interface AppLayoutInternalProps extends React.PropsWithChildren<{}> {}
