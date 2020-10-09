@@ -4,6 +4,7 @@ import { Text, View } from "react-native";
 import { T, TargemProvider } from "react-targem";
 import styles from "./AppLayout.styles";
 import translations from "src/i18n/translations.json";
+import { Provider as PaperProvider } from "react-native-paper";
 import {
   SettingsContextProvider,
   useSettings,
@@ -18,18 +19,20 @@ const AppLayoutInternal: React.FC<AppLayoutInternalProps> = ({
   const { locale } = useSettings();
 
   return (
-    <NavigationContainer>
-      <TargemProvider locale={locale} translations={translations}>
-        <View style={styles.container}>
-          <LocalSelector />
-          <Text>
-            <T message="Open up App.tsx to start working on your app!" />
-          </Text>
-          {children}
-          <StatusBar style="auto" />
-        </View>
-      </TargemProvider>
-    </NavigationContainer>
+    <PaperProvider>
+      <NavigationContainer>
+        <TargemProvider locale={locale} translations={translations}>
+          <View style={styles.container}>
+            <LocalSelector />
+            <Text>
+              <T message="Open up App.tsx to start working on your app!" />
+            </Text>
+            {children}
+            <StatusBar style="auto" />
+          </View>
+        </TargemProvider>
+      </NavigationContainer>
+    </PaperProvider>
   );
 };
 interface AppLayoutInternalProps extends React.PropsWithChildren<{}> {}
