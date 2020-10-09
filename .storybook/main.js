@@ -13,6 +13,7 @@ module.exports = {
   ],
   // https://storybook.js.org/docs/react/configure/webpack
   webpackFinal: async (config, { configType }) => {
+    config.resolve.alias["react-native$"] = "react-native-web";
     return config;
   },
 };
