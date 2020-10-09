@@ -9,6 +9,11 @@ export const locales = [
     internationalName: "English (US)",
     localName: "English (US)",
   },
+  {
+    key: "ru",
+    internationalName: "Russian",
+    localName: "Русский",
+  },
 ] as const;
 
 export type Locale = typeof locales[number]["key"];
