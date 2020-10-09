@@ -8,6 +8,7 @@ import {
   SettingsContextProvider,
   useSettings,
 } from "src/contexts/SettingsContext";
+import LocalSelector from "src/components/LocaleSelector";
 
 const AppLayoutInternal: React.FC<AppLayoutInternalProps> = ({
   children,
@@ -17,6 +18,7 @@ const AppLayoutInternal: React.FC<AppLayoutInternalProps> = ({
   return (
     <TargemProvider locale={locale} translations={translations}>
       <View style={styles.container}>
+        <LocalSelector />
         <Text>
           <T message="Open up App.tsx to start working on your app!" />
         </Text>
