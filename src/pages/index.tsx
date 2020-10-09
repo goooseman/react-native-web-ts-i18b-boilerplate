@@ -6,7 +6,7 @@ const Stack = createStackNavigator();
 
 const Pages: React.FC<HomePageProps> = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Home" headerMode="none">
       <Stack.Screen name="Home" component={HomePage} />
     </Stack.Navigator>
   );

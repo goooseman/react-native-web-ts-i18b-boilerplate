@@ -1,8 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { View } from "react-native";
 import { TargemProvider } from "react-targem";
-import styles from "./AppLayout.styles";
 import translations from "src/i18n/translations.json";
 import { Provider as PaperProvider } from "react-native-paper";
 import {
@@ -11,7 +9,6 @@ import {
 } from "src/contexts/SettingsContext";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
-import LocalSelector from "src/components/LocaleSelector";
 
 const AppLayoutInternal: React.FC<AppLayoutInternalProps> = ({
   children,
@@ -22,11 +19,8 @@ const AppLayoutInternal: React.FC<AppLayoutInternalProps> = ({
     <PaperProvider>
       <NavigationContainer>
         <TargemProvider locale={locale} translations={translations}>
-          <View style={styles.container}>
-            <LocalSelector />
-            {children}
-            <StatusBar style="auto" />
-          </View>
+          {children}
+          <StatusBar style="auto" />
         </TargemProvider>
       </NavigationContainer>
     </PaperProvider>
