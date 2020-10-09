@@ -5,7 +5,14 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint:check": "npm run lint:prettier:check . && npm run lint:tsc:check && npm run lint:eslint:check .",
+    "lint:write": "npm run lint:prettier:write . && npm run lint:eslint:write .",
+    "lint:prettier:check": "prettier --check --ignore-path .gitignore",
+    "lint:prettier:write": "prettier --write --ignore-path .gitignore",
+    "lint:tsc:check": "tsc --noEmit",
+    "lint:eslint:check": "eslint --ext .ts,.tsx --ignore-path .gitignore",
+    "lint:eslint:write": "eslint --ext .ts,.tsx --ignore-path .gitignore --fix"
   },
   "dependencies": {
     "expo": "~39.0.2",
@@ -16,10 +23,18 @@
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "react-native-web": "~0.13.7",
     "@types/react": "~16.9.35",
     "@types/react-dom": "~16.9.8",
     "@types/react-native": "~0.63.2",
+    "@typescript-eslint/eslint-plugin": "^4.4.0",
+    "@typescript-eslint/parser": "^4.4.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-jest-dom": "^3.2.3",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.3",
+    "prettier": "^2.1.2",
+    "react-native-web": "~0.13.7",
     "typescript": "~3.9.5"
   },
   "private": true
